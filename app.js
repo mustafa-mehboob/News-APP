@@ -33,23 +33,15 @@ const getData = new Promise((resolve, reject) => {
     )
         .then((res) => res.json())
         .then((res) => resolve(res))
-        .catch((err) => reject(err));
+        .catch((err) => {
+            reject(err)
+            swal("Error a rha hai")
+        });
 });
 
 getData.then((res) => {
     console.log(res);
-    if (!fetch) {
-        alert("Enter correct city");
-    } else {
-        // var img = `
-        // <img src="${res.articles[0].urlToImage}" class="card-img-top" alt="...">
-        // <div class="card-body">
-        //             <h5 class="card-title">Special title treatment</h5>
-        //             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        //             <a href="#" class="btn btn-primary">Go somewhere</a>
-        //           </div>
-        // `;
-        // document.getElementById("news-data").innerHTML = img
+    
 
         let articles = res.articles;
         console.log(res.articles.length);
@@ -63,12 +55,27 @@ getData.then((res) => {
                 <p class="card-text">${articles[i].description}</p>
                 <a href="${articles[i].url}" class="btn btn-primary">Read more</a>
             </div>
-         `;
+            `;
             document.getElementById("news-data").innerHTML += img
-
         }
 
+
+        getData.catch((err) => {
+        })
+
+
+        // var img = `
+        // <img src="${res.articles[0].urlToImage}" class="card-img-top" alt="...">
+        // <div class="card-body">
+        //             <h5 class="card-title">Special title treatment</h5>
+        //             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        //             <a href="#" class="btn btn-primary">Go somewhere</a>
+        //           </div>
+        // `;
+        // document.getElementById("news-data").innerHTML = img
         // document.getElementById("description").innerHTML = res.weather[0].description
-        // document.getElementById("temp").innerHTML = res + "&#176;"
-    }
-});
+
+        
+}
+  
+);
