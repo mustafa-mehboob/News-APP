@@ -26,7 +26,7 @@
 //     for (var i = 0; i < articles.length; i++) {
 //         console.log(articles);
 //         var img = `
-//         <div class="single-card-div " >
+//         <div class="single-card-div" id="cardData"  >
 //              <img src="${articles[i].urlToImage}" class="card-img-top" alt="...">
 //              <div class="card-body">
 //                  <h5 class="card-title">${articles[i].title}</h5>
@@ -68,13 +68,19 @@
 //         getData.then((res) => {
 //             console.log(res);
 
+// console.log(articles);
+//         let cardData = document.getElementById("cardData");
+//         console.log(cardData);
+//         let parent = cardData.parentNode;
+//         parent.removeChild(cardData);
+
 
 //             let articles = res.articles;
 //             console.log(res.articles.length);
 //             for (var i = 0; i < articles.length; i++) {
 //                 console.log(articles);
 //                 var img = `
-//                 <div class="single-card-div " >
+//                 <div class="single-card-div" id="cardData"  >
 //                      <img src="${articles[i].urlToImage}" class="card-img-top" alt="...">
 //                      <div class="card-body">
 //                          <h5 class="card-title">${articles[i].title}</h5>
@@ -135,7 +141,7 @@ getData.then((res) => {
     for (var i = 0; i < 1; i++) {
         console.log(articles);
         var img = `
-                        <div class="single-card-div " >
+                        <div class="single-card-div" id="cardData"  >
                              <img src="${articles[i].urlToImage}" class="card-img-top" alt="...">
                              <div class="card-body">
                                  <h5 class="card-title">${articles[i].title}</h5>
@@ -181,20 +187,29 @@ function search() {
         let articles = res.articles;
         console.log(res.articles.length);
 
-        const el = document.querySelector(".single-card-div");
-
-Object.keys(el.dataset).forEach(key=>{
-    delete el.dataset[key];
-})
 
         console.log(articles);
-        // newsData.innerHTML = ""
-        // img = ""
+
         newsData = document.getElementById("news-data")
-        for (var i = 0; i < 1; i++) {
-            console.log(articles);
+
+        for (let o = 0; o < articles.length; o++) {
+            
+            let cardData = document.getElementById("cardData");
+            let parent = cardData.parentNode;
+            parent.removeChild(cardData);
+        }
+        
+        let cardData = document.getElementById("cardData");
+        
+        //cardData.firstElementChild can be used.
+        var child = cardData.lastElementChild; 
+        while (child) {
+            cardData.removeChild(child);
+            child = cardData.lastElementChild;
+        }
+        for (var i = 0; i < 3; i++) {
             var img = `
-                <div class="single-card-div " >
+                <div class="single-card-div " id="cardData">
                     <img src="${articles[i].urlToImage}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">${articles[i].title}</h5>
